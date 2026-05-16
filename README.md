@@ -51,32 +51,27 @@ comprimento das vias.
 
 ## Principais Visualizações
 
-[Inserir as imagens geradas pelo notebook ou pelo Gephi. Recomenda-se adicionar legendas 
-explicativas para cada mapa]
+Abaixo estão as representações geradas via Gephi para a análise topológica de São José de Mipibu. Foram utilizados o **Geo Layout** (para preservar a fidelidade espacial) e o **ForceAtlas2** (layout de força estrutural para aproximar nós fortemente conectados).
 
-1. **Grafo Base:** Traçado viário original evidenciando vias de mão dupla e mão única.
-* `[Inserir imagem do grafo limpo]`
+### 1. Visão Real e Densidade Estrutural (K-Core)
+![Geo K-core](utils/images/01_geo_kcore.png)
+* **Métricas Usadas:** Layout Geográfico (Lat/Lon). Tamanho do nó: `degree_centrality` (Grau). Cor do nó: `k_core` (Partition).
+* **Análise:** Esta imagem apresenta o esqueleto viário da cidade sobre o espaço físico. O tamanho destaca os cruzamentos mais movimentados (hubs), enquanto as cores separam os nós por camadas de coesão (K-Core). O núcleo duro (K-Core máximo) revela as regiões onde a malha é fortemente interconectada e oferece múltiplas vias de escape, concentrando-se fortemente no centro urbano, enquanto as bordas com cores diferentes representam ruas isoladas ou rodovias de acesso singular.
 
+### 2. Pontes e Gargalos (Betweenness Centrality)
+![Geo Betweenness](utils/images/02_geo_betweenness.png)
+* **Métricas Usadas:** Layout Geográfico. Tamanho do nó: `degree_centrality` (Grau). Cor do nó (Heatmap): `betweenness_centrality` (Gradiente).
+* **Análise:** Apesar de termos cruzamentos com alto Grau no centro do município, o gradiente térmico de betweenness evidencia artérias cruciais por onde quase todos os caminhos precisam obrigatoriamente passar — as "pontes" viárias que conectam grandes bolsões do município. Áreas/vias que adquirem coloração "quente" nesta visualização são críticos para o tráfego: se interrompidas, dividem drasticamente a mobilidade do município, evidenciando o padrão de rodovias e estradas centrais alongadas.
 
-2. **Distribuição de Grau:** Gráfico (histograma) demonstrando a frequência dos graus na rede.
-* `[Inserir gráfico de distribuição]`
+### 3. Principais Distribuidores de Fluxo (Filtro: Top 10% Grau)
+![Top 10% Grau](utils/images/03_filtro_top10_grau.png)
+* **Métricas Usadas:** Layout Estrutural (ForceAtlas2). Tamanho do nó: `degree_centrality`. Destaque de cor sobre nós base (cinza). Filtro: `degree_centrality` isolando o decil superior (aprox. 10% maiores do grafo).
+* **Análise:** Este destaque isola puramente as maiores estrelas da rede (os gigantes distribuidores). Com a atração topológica do ForceAtlas2, fica evidente que os grandes hubs de São José de Mipibu se atraem mutuamente formando um "núcleo duro" e muito conectado entre si, em vez de ficarem espalhados aleatoriamente pelas periferias, confirmando a alta dependência de cruzamentos centrais.
 
-
-3. **Betweenness Centrality (Mapa de Calor):** Visualização das vias que atuam como pontes de 
-fluxo.
-* `[Inserir mapa de calor do betweenness]`
-
-
-4. **Closeness Centrality (Mapa de Calor):** Visualização da acessibilidade de cada nó em 
-relação ao resto da rede.
-* `[Inserir mapa de calor do closeness]`
-
-
-5. **K-Core / Hubs:** Destaque para o núcleo mais denso da malha viária em contraste com as 
-periferias.
-* `[Inserir imagem destacando o K-core]`
-
-
+### 4. A Malha Coesa Livre de Ruídos (Filtro: K-Core = 2)
+![K-core 2](utils/images/04_filtro_kcore2.png)
+* **Métricas Usadas:** Layout Estrutural (ForceAtlas2). Filtro topológico: Exibição restrita a nós com `k_core = 2` estrutural estrito. 
+* **Análise:** A decomposição K-Core aplicada rigorosamente isola a parte coesa viável da rede. Ao descartar o subgrafo k=1, eliminamos completamente as "folhas" da árvore: todas as ruas ou chácaras sem saída. O que sobra é a verdadeira rede circulante da localidade — a matriz pela qual é possível fazer voltas fechadas, circuitos de logísticas urbanas e rotas alternativas de ônibus, confirmando o centro maduro e excluindo braços habitacionais mais recentes/lineares.
 
 ## Respostas às Questões Obrigatórias
 
