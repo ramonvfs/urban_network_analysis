@@ -96,40 +96,87 @@ Abaixo estão as representações geradas via Gephi para a análise topológica 
 ## Respostas às Questões Obrigatórias
 
 **1. Os nós com maior grau coincidem com os nós de maior betweenness?**
-[Inserir resposta. Discutir se os cruzamentos com mais vias conectadas são de fato os mesmos que 
-concentram o fluxo da cidade de um lado para o outro, ou se há vias de menor grau que funcionam 
-como gargalos obrigatórios.]
+Não necessariamente. Os nós com maior grau representam os cruzamentos com mais conexões diretas, 
+ou seja, pontos importantes localmente dentro da malha viária. Porém, os maiores valores de 
+`betweenness_centrality` aparecem também em nós com grau menor, como grau 3 ou 4, porque esses 
+nós funcionam como passagens obrigatórias entre diferentes regiões da rede. Assim, um cruzamento 
+pode não ter muitas ruas conectadas a ele e, ainda assim, concentrar grande parte dos caminhos 
+mínimos entre bairros ou setores da cidade. Na prática, o grau identifica hubs locais, enquanto 
+a betweenness identifica gargalos globais de fluxo.
 
 **2. O núcleo identificado pelo k-core coincide com os principais hubs?**
-[Inserir resposta. Analisar se o 2-core (ou núcleo máximo identificado) engloba os maiores hubs 
-ou se deixa algum hub importante de fora por estar em uma região mais periférica/arborescente.]
+Em grande parte, sim. Os principais hubs por grau estão dentro do núcleo máximo encontrado, que 
+foi o `k-core = 2`. Isso indica que esses cruzamentos fazem parte da porção mais conectada e 
+circulável da rede. Entretanto, o k-core não deve ser interpretado como uma lista de hubs: ele 
+mede coesão estrutural, não apenas quantidade de conexões. Como 1376 dos 1585 nós pertencem ao 
+`k-core = 2`, esse núcleo representa uma malha urbana ampla, retirando principalmente ruas sem 
+saída, ramificações periféricas e trechos com baixa redundância de caminhos.
 
 **3. O que a métrica de betweenness revela que o grau não revela?**
-[Inserir resposta. Explicar como o betweenness identifica vias que servem de "ponte" entre 
-diferentes bairros ou regiões desconectadas, mesmo que essas vias sejam retas longas com poucos 
-cruzamentos (baixo grau).]
+A betweenness revela quais nós e trechos atuam como pontes entre partes diferentes da cidade. 
+Enquanto o grau mede apenas quantas conexões diretas um cruzamento possui, a betweenness mede 
+quantos caminhos mínimos passam por ele. Por isso, ela consegue destacar vias estruturantes, 
+corredores de acesso, trechos próximos à BR-101 e ligações entre bairros que podem ter baixo grau, 
+mas alta importância para o deslocamento geral. Essa métrica é especialmente útil para identificar 
+pontos onde uma interrupção causaria grande impacto na mobilidade.
 
 **4. O que muda quando a rede é analisada em sua posição geográfica real e quando é analisada 
 por um layout estrutural?**
-[Inserir resposta. Comparar as coordenadas reais (latitude/longitude do OSMnx) com os layouts 
-do Gephi (ex: ForceAtlas2), explicando como o layout estrutural aproxima comunidades altamente 
-conectadas, ignorando a distância física real.]
+Na visualização geográfica, os nós são posicionados por latitude e longitude, preservando a forma 
+real da cidade. Isso permite observar onde ficam fisicamente o centro urbano, as vias longas, os 
+bairros periféricos e os acessos principais. Já no layout estrutural, como o ForceAtlas2, a posição 
+real é substituída por uma organização baseada nas conexões do grafo. Nós e grupos mais conectados 
+entre si são aproximados, mesmo que estejam distantes no mapa real. Portanto, o mapa geográfico 
+ajuda a interpretar a cidade como espaço físico, enquanto o layout estrutural ajuda a enxergar 
+comunidades, hubs e dependências topológicas.
 
 **5. Existem regiões críticas para mobilidade urbana na área analisada?**
-[Inserir resposta. Identificar as artérias principais apontadas pelos mapas de calor e discutir 
-possíveis pontos de engarrafamento ou vias onde a interrupção causaria colapso no fluxo.]
+Sim. As regiões críticas aparecem principalmente nos corredores com alta betweenness, próximos às 
+vias estruturantes e aos acessos que conectam diferentes bolsões urbanos. A análise indica que 
+trechos próximos à BR-101 e às vias centrais exercem papel importante no fluxo, pois concentram 
+caminhos entre áreas distintas da rede. Se esses pontos forem bloqueados ou congestionados, muitos 
+deslocamentos passam a depender de rotas alternativas mais longas ou menos diretas. Isso mostra 
+que a mobilidade local depende de alguns eixos principais, e não apenas da quantidade de cruzamentos 
+em cada ponto.
 
 **6. A rede parece homogênea ou apresenta concentração estrutural?**
-[Inserir resposta. Avaliar se o traçado é uma grade simétrica (como cidades planejadas) ou se 
-possui centros densos e periferias esparsas.]
+A rede apresenta concentração estrutural. Ela não se comporta como uma grade regular e homogênea, 
+pois existem áreas centrais mais densas, vias longas de ligação e regiões periféricas com 
+ramificações mais esparsas. A distribuição do k-core reforça essa interpretação: a maior parte dos 
+nós está no `k-core = 2`, formando a malha circulável principal, enquanto os nós de `k-core = 1` 
+representam pontas, acessos isolados e ruas com menor redundância. Essa estrutura é típica de uma 
+cidade que cresceu em torno de eixos viários e de um centro urbano mais consolidado.
 
 **7. Os resultados obtidos fazem sentido considerando o conhecimento urbano da região escolhida?**
-[Inserir resposta. Validar os dados matemáticos com a realidade física de São José de Mipibu, 
-verificando se as vias com maior betweenness correspondem às rodovias ou avenidas centrais 
-conhecidas do município.]
+Sim. Os resultados são coerentes com a estrutura urbana de São José de Mipibu e com a presença de 
+vias de grande importância regional, especialmente a BR-101 e os acessos centrais próximos a ela. 
+Os hubs por grau aparecem em áreas com maior quantidade de cruzamentos, enquanto os maiores valores 
+de betweenness destacam pontos que conectam regiões diferentes da cidade. Essa diferença faz sentido 
+para uma malha viária formada por um centro mais denso, bairros conectados por eixos principais e 
+áreas periféricas menos integradas. Portanto, as métricas calculadas não apenas produzem números, 
+mas ajudam a explicar características reais da mobilidade local.
 
 ## Principais Conclusões
 
-[Inserir de 2 a 3 parágrafos fechando o raciocínio do trabalho. Sintetizar como as métricas do 
-NetworkX ajudaram a revelar a estrutura invisível da cidade e quais foram os achados mais 
-surpreendentes sobre a topologia da malha viária analisada.]
+A análise da malha viária de São José de Mipibu mostrou que as métricas de grafos permitem enxergar 
+uma estrutura que não aparece de forma imediata apenas olhando o mapa. Com o NetworkX, foi possível 
+separar diferentes tipos de importância: o grau destacou os cruzamentos mais conectados, a closeness 
+indicou pontos com boa acessibilidade geral, a betweenness revelou gargalos de circulação e o k-core 
+mostrou a parte mais coesa e redundante da rede. Dessa forma, a cidade pôde ser interpretada não 
+apenas como um conjunto de ruas, mas como uma rede com centros, pontes, dependências e regiões mais 
+ou menos resilientes.
+
+Um dos achados mais relevantes foi perceber que os principais hubs por grau não coincidem 
+necessariamente com os maiores gargalos de fluxo. Alguns nós com poucas conexões diretas aparecem 
+com alta betweenness porque ocupam posições estratégicas entre diferentes setores da cidade. Isso 
+mostra que, em uma análise de mobilidade urbana, cruzamentos aparentemente simples podem ter grande 
+importância operacional. A presença da BR-101 e de vias centrais alongadas reforça esse padrão, pois 
+elas funcionam como eixos de ligação entre áreas densas, bairros periféricos e acessos regionais.
+
+O k-core máximo igual a 2 também revelou uma característica importante da rede: a cidade possui uma 
+malha circulável ampla, mas com baixa profundidade de núcleo quando comparada a redes urbanas mais 
+densas e regulares. A maior parte dos nós pertence ao núcleo principal, enquanto os nós fora dele 
+representam ramificações, ruas sem saída e acessos menos integrados. Assim, a topologia analisada 
+aponta para uma cidade com centro relativamente consolidado, dependência de alguns corredores 
+estruturantes e periferias mais esparsas, o que torna as vias de ligação especialmente críticas para 
+a mobilidade local.
