@@ -11,6 +11,16 @@
 * O município localizado na grande Natal possui cerca de 50000 habitantes, foi escolhido por ter 
 um tamanho adequado, o que facilita a visualização e o processamento dos dados, além de ser a 
 cidade onde residem dois integrantes do grupo.
+
+![Mapa de São José de Mipibu e centro de Nísia Floresta](utils/images/mapa_sjm.png)
+
+É importante destacar que o centro de Nísia Floresta também é visível no mapa acima. 
+A proximidade das duas cidades permite que em uma única imagem, com raio relativamente 
+pequeno, mostre os centros de São José e Nísia, com a primeira na parte esquerda e a 
+segunda na parte direita da imagem. Vale lembrar também que nem toda a extensão territorial 
+das duas cidades estão contidas na imagem, para São José tem-se o centro e bairros próximos, 
+para Nísia contém-se apenas a região central e as proximidades da Lagoa do Bonfim.
+
 ## Link da Apresentação
 
 * **Vídeo:** [Inserir o link ***DO LOOM DESSA VEZ*** do vídeo de apresentação aqui]
@@ -22,6 +32,15 @@ formas matematicamente confiáveis para obter-se insights importantes sobre impo
 e caminhos, por exemplo. O objetivo deste trabalho é apresentar uma análise do fluxo da cidade 
 usando grafos, mais especificamente utilizando centralidades, e outros métodos como K-Core, assim 
 propondo uma visualização analítica sobre a topologia das vias.
+
+### Introdução
+
+![Visão Geral](utils/images/00_mapa_sintese_python.png)
+* Top Hubs, Closeness e Betweenness, distâncias e direções
+Na imagem, nota-se que as maiores centralidades estão coladas com a BR 101, que é a maior via 
+unidirecional, em contraste com o restante da cidade que possui vias em grande maioria bidirecional 
+(duas mãos). Além disso, as distâncias se mantém curtas, com excessão de alguns trechos da BR e outras 
+vias periféricas.
 
 ## Metodologia
 
@@ -52,6 +71,7 @@ comprimento das vias.
 ## Principais Visualizações
 
 Abaixo estão as representações geradas via Gephi para a análise topológica de São José de Mipibu. Foram utilizados o **Geo Layout** (para preservar a fidelidade espacial) e o **ForceAtlas2** (layout de força estrutural para aproximar nós fortemente conectados).
+
 
 ### 1. Visão Real e Densidade Estrutural (K-Core)
 ![Geo K-core](utils/images/01_geo_kcore.png)
