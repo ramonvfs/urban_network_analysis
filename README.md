@@ -36,7 +36,7 @@ propondo uma visualização analítica sobre a topologia das vias.
 ### Introdução
 
 ![Visão Geral](utils/images/00_mapa_sintese_python.png)
-* Top Hubs, Closeness e Betweenness, distâncias e direções
+* Top Hubs, Closeness e Betweenness, distâncias e direções <br>
 Na imagem, nota-se que as maiores centralidades estão coladas com a BR 101, que é a maior via 
 unidirecional, em contraste com o restante da cidade que possui vias em grande maioria bidirecional 
 (duas mãos). Além disso, as distâncias se mantém curtas, com excessão de alguns trechos da BR e outras 
