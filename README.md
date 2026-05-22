@@ -23,7 +23,7 @@ para Nísia contém-se apenas a região central e as proximidades da Lagoa do Bo
 
 ## Link da Apresentação
 
-* **Vídeo:** [Inserir o link ***DO LOOM DESSA VEZ*** do vídeo de apresentação aqui]
+* **Vídeo:** (https://www.loom.com/share/ec7e63ef389240eb8dfabb8d0eb629ff)
 
 ## Objetivo do Trabalho
 
@@ -98,14 +98,13 @@ Abaixo estão as representações geradas via Gephi para a análise topológica 
 **1. Os nós com maior grau coincidem com os nós de maior betweenness?**
 Não necessariamente. Os nós com maior grau representam os cruzamentos com mais conexões diretas, 
 ou seja, pontos importantes localmente dentro da malha viária. Porém, os maiores valores de 
-`betweenness_centrality` aparecem também em nós com grau menor, como grau 3 ou 4, porque esses 
+`betweenness_centrality` aparecem também em nós com grau menor, como grau 3 ou 2, porque esses 
 nós funcionam como passagens obrigatórias entre diferentes regiões da rede. Assim, um cruzamento 
 pode não ter muitas ruas conectadas a ele e, ainda assim, concentrar grande parte dos caminhos 
-mínimos entre bairros ou setores da cidade. Na prática, o grau identifica hubs locais, enquanto 
-a betweenness identifica gargalos globais de fluxo.
+mínimos entre bairros ou setores da cidade.
 
 **2. O núcleo identificado pelo k-core coincide com os principais hubs?**
-Em grande parte, sim. Os principais hubs por grau estão dentro do núcleo máximo encontrado, que 
+Em grande parte, sim. Os principais hubs por grau estão dentro do núcleo máximo encontrado (bem grande), que 
 foi o `k-core = 2`. Isso indica que esses cruzamentos fazem parte da porção mais conectada e 
 circulável da rede. Entretanto, o k-core não deve ser interpretado como uma lista de hubs: ele 
 mede coesão estrutural, não apenas quantidade de conexões. Como 1376 dos 1585 nós pertencem ao 
@@ -131,21 +130,12 @@ ajuda a interpretar a cidade como espaço físico, enquanto o layout estrutural 
 comunidades, hubs e dependências topológicas.
 
 **5. Existem regiões críticas para mobilidade urbana na área analisada?**
-Sim. As regiões críticas aparecem principalmente nos corredores com alta betweenness, próximos às 
-vias estruturantes e aos acessos que conectam diferentes bolsões urbanos. A análise indica que 
-trechos próximos à BR-101 e às vias centrais exercem papel importante no fluxo, pois concentram 
-caminhos entre áreas distintas da rede. Se esses pontos forem bloqueados ou congestionados, muitos 
-deslocamentos passam a depender de rotas alternativas mais longas ou menos diretas. Isso mostra 
-que a mobilidade local depende de alguns eixos principais, e não apenas da quantidade de cruzamentos 
-em cada ponto.
+Sim, há algumas regiões críticas para a mobilidade. Um desses pontos é uma rotatória localizada no centro da cidade, que liga todas as regiões. Qualquer incidente que ocorrer nesse lugar atrapalhará todo o tráfego da cidade. Outro ponto importante é uma rotatória que permite o acesso das duas principais avenidas ao centro. Da mesma forma, o cruzamento que existe na BR-101 liga um lado à outro da cidade. Não é coincidência que esses são alguns dos pontos de maior betweenness. Se esses pontos forem bloqueados ou congestionados, muitos deslocamentos passam a depender de rotas alternativas mais longas ou menos diretas.
 
 **6. A rede parece homogênea ou apresenta concentração estrutural?**
-A rede apresenta concentração estrutural. Ela não se comporta como uma grade regular e homogênea, 
-pois existem áreas centrais mais densas, vias longas de ligação e regiões periféricas com 
-ramificações mais esparsas. A distribuição do k-core reforça essa interpretação: a maior parte dos 
+A rede apresenta uma clara concentração estrutural, não se comportando como uma malha regular e homogênea. Observa-se a presença de um eixo viário principal que organiza grande parte da circulação urbana, concentrando os maiores valores de centralidade e conectando as áreas mais densamente integradas da cidade. As áreas periféricas apresentam padrão mais esparso e ramificado, com menor redundância de conexões e maior dependência do núcleo central para acessibilidade. A distribuição do k-core reforça essa interpretação: a maior parte dos 
 nós está no `k-core = 2`, formando a malha circulável principal, enquanto os nós de `k-core = 1` 
-representam pontas, acessos isolados e ruas com menor redundância. Essa estrutura é típica de uma 
-cidade que cresceu em torno de eixos viários e de um centro urbano mais consolidado.
+representam pontas, acessos isolados e ruas com menor redundância. Poucas vias exercem papel dominante na conectividade e na circulação geral da rede, característica de uma cidade que cresceu em torno de eixos viários principais e de um centro urbano.
 
 **7. Os resultados obtidos fazem sentido considerando o conhecimento urbano da região escolhida?**
 Sim. Os resultados são coerentes com a estrutura urbana de São José de Mipibu e com a presença de 
@@ -160,17 +150,13 @@ mas ajudam a explicar características reais da mobilidade local.
 
 A análise da malha viária de São José de Mipibu mostrou que as métricas de grafos permitem enxergar 
 uma estrutura que não aparece de forma imediata apenas olhando o mapa. Com o NetworkX, foi possível 
-separar diferentes tipos de importância: o grau destacou os cruzamentos mais conectados, a closeness 
-indicou pontos com boa acessibilidade geral, a betweenness revelou gargalos de circulação e o k-core 
-mostrou a parte mais coesa e redundante da rede. Dessa forma, a cidade pôde ser interpretada não 
-apenas como um conjunto de ruas, mas como uma rede com centros, pontes, dependências e regiões mais 
+separar diferentes tipos de importância: o grau destacou os cruzamentos mais conectados, a betweenness revelou gargalos de circulação e o k-core mostrou a parte mais coesa e redundante da rede. Dessa forma, a cidade pôde ser interpretada não apenas como um conjunto de ruas, mas como uma rede com centros, pontes, dependências e regiões mais 
 ou menos resilientes.
 
 Um dos achados mais relevantes foi perceber que os principais hubs por grau não coincidem 
 necessariamente com os maiores gargalos de fluxo. Alguns nós com poucas conexões diretas aparecem 
 com alta betweenness porque ocupam posições estratégicas entre diferentes setores da cidade. Isso 
-mostra que, em uma análise de mobilidade urbana, cruzamentos aparentemente simples podem ter grande 
-importância operacional. A presença da BR-101 e de vias centrais alongadas reforça esse padrão, pois 
+mostra que, em uma análise de mobilidade urbana, cruzamentos aparentemente simples, como o da BR-101, podem tem grande importância operacional. A presença da BR-101 e de vias centrais alongadas reforça esse padrão, pois 
 elas funcionam como eixos de ligação entre áreas densas, bairros periféricos e acessos regionais.
 
 O k-core máximo igual a 2 também revelou uma característica importante da rede: a cidade possui uma 
