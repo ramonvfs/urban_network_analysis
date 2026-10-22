@@ -58,15 +58,16 @@ comprimento das vias.
 
 ## Métricas Calculadas
 
-[tabela]
-
-* **Número de Nós (Interseções):** 1585
-* **Número de Arestas (Vias):** 4357
-* **Grau Médio:** 5.5
-* **Hubs Principais (Top 3 por Grau):** <br>
-(1371092853, 8), (1371092880, 8), (1371092882, 8)
-* **K-core Máximo:** 2
-* **Nós no Núcleo Principal (K-core):** 1376
+| Métrica | Valor |
+|---|---|
+| Nós (interseções e pontas de rua) | 1585 |
+| Arestas (trechos de via direcionados) | 4357 |
+| Grau médio (entrada + saída) | 5,5 |
+| Hubs principais (top 3 por grau) | 1371092853, 1371092880, 1371092882 (grau 8) |
+| K-core máximo | 2 |
+| Nós no núcleo principal (k-core = 2) | 1376 |
+| Comprimento médio de um trecho | 130 m |
+| Cruzamentos de 3 vias / 4 vias / ruas sem saída | 71% / 17% / 12% |
 
 ## Principais Visualizações
 
@@ -166,3 +167,23 @@ representam ramificações, ruas sem saída e acessos menos integrados. Assim, a
 aponta para uma cidade com centro relativamente consolidado, dependência de alguns corredores 
 estruturantes e periferias mais esparsas, o que torna as vias de ligação especialmente críticas para 
 a mobilidade local.
+
+## Como Executar
+
+```bash
+pip install -r requirements.txt
+jupyter notebook maps_osmnx.ipynb
+```
+
+O notebook baixa a malha viária do OpenStreetMap (é preciso estar conectado à internet), calcula as métricas e exporta o grafo em `utils/graph_mipibu.graphml`, que pode ser aberto no [Gephi](https://gephi.org/) para reproduzir as visualizações acima. Para analisar outra cidade, basta trocar `LATITUDE`, `LONGITUDE` e `DISTANCIA_METROS` no início do notebook.
+
+## Estrutura
+
+```
+.
+├── maps_osmnx.ipynb          # extração, métricas e mapas
+├── requirements.txt
+└── utils/
+    ├── graph_mipibu.graphml  # grafo exportado para o Gephi
+    └── images/               # mapas e visualizações do Gephi
+```
